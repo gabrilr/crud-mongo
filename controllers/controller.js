@@ -1,36 +1,31 @@
-import { connectToDatabase } from '../db/db.js';
+
+import { MongoClient } from 'mongodb';
+import { connectToDatabase } from "../db/db.js";
 
 export const register = async (req, res) => {
 
     const params = req.body;
 
     if (params.email != "" && params.name  != "" && params.password  != "" && params.type_user  != "" ) {
-        console.log('si paso');
+        //console.log(params);
+        const db = await connectToDatabase();
         try {
             
-            const db = await connectToDatabase();
-            const result = await db.collection('users').insertOne(params);
+            // console.log(params);
+            const collection = db.collection('users');
+            const result = await collection.insertOne(params);
+
+            const documento = await collection.findOne({ _id: result.insertedId });
             
-            res.json({
-                id: result._id,
-                email: result.email,
-                name: result.name,
-                type_user: result.type_user
-            });
+            console.log(JSON.stringify(documento));
+            res.json(documento);
+            
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: "Error al agregar un usuario" });     
         }
     }
-
 };
-
-
-
-
-
-
-
 
 
 

@@ -1,14 +1,14 @@
 
 import { MongoClient } from 'mongodb';
 
-const mongoURI = 'mongodb://localhost:27017'; // Reemplaza esto con tu URI de conexión a MongoDB
-const dbName = process.env.DATABASE; // Reemplaza esto con el nombre de tu base de datos
+const mongoURI = 'mongodb://127.0.0.1:27017'; // Reemplaza esto con tu URI de conexión a MongoDB
+const dbName = 'tododb' // Reemplaza esto con el nombre de tu base de datos
+const client = new MongoClient(mongoURI);
 
-async function connectToDatabase() {
-    const client = new MongoClient(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+export async function connectToDatabase() {
     try {
-        await client.connect();
-        const db = client.db(dbName);
+        const connection = await client.connect();
+        const db = connection.db(dbName);
         console.log('Conectado a MongoDB');
         return db;
     } catch (error) {
@@ -16,5 +16,3 @@ async function connectToDatabase() {
         throw error;
     }
 }
-
-export { connectToDatabase };
