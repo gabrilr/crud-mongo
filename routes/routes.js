@@ -1,6 +1,7 @@
 
 import { Router } from "express";
 import { register } from "../controllers/controller.js";
+import { updateUser } from "../controllers/updateUserController.js";
 
 
 const router = Router();
@@ -17,5 +18,6 @@ router.post('/', (req, res) => {
 })
 router.post('/registrar', register);
 
+router.put('/actualizar/:id', updateUser); //Esto es la ruta que yo agregué
 
 export default router;
