@@ -1,9 +1,9 @@
-
 import { Router } from "express";
 
 import { register } from "../controllers/RegisterUserController.js";
 import { updateUser } from "../controllers/updateUserController.js";
 import { find } from "../controllers/findUserController.js";
+import { deleteUser } from "../controllers/DeleteUserController.js";
 
 import { registerProject } from "../controllers/newProjectController.js";
 
@@ -25,5 +25,6 @@ router.post('/buscar-usuario/:id', find);
 
 router.post('/registrar-proyecto', registerProject);
 
+router.delete('/borrarUsuario/:id', deleteUser);
 
 export default router;
