@@ -1,7 +1,7 @@
-
 import { Router } from "express";
 import { register } from "../controllers/RegisterUserController.js";
 import { updateUser } from "../controllers/updateUserController.js";
+import { deleteUser } from "../controllers/DeleteUserController.js";
 
 
 const router = Router();
@@ -19,5 +19,7 @@ router.post('/', (req, res) => {
 router.post('/registrar', register);
 
 router.put('/actualizar/:id', updateUser); 
+
+router.delete('/borrarUsuario/:id', deleteUser);
 
 export default router;
