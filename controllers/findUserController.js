@@ -12,9 +12,13 @@ export const find = async (req, res) => {
             const db = await connectToDatabase();
 
             const result = await db.collection ('users').find(filtro).toArray();
-
-            console.log(JSON.stringify(result));
-            res.json(result);
+            
+            if (result.length > 0) {
+                console.log(JSON.stringify(result));
+                res.json(result);    
+            } else {
+                res.json({ mensaje: "No se encontraron coincidencias" });    
+            }
 
         } catch (error) {
             console.log(error);
