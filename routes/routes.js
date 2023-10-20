@@ -22,9 +22,9 @@ router.post('/', (req, res) => {
 router.post('/registrar-usuario', register);
 router.put('/actualizar-usuario/:id', updateUser);
 router.post('/buscar-usuario/:id', find);
+router.delete('/borrarUsuario/:id', deleteUser);
 
 router.post('/registrar-proyecto', registerProject);
 
-router.delete('/borrarUsuario/:id', deleteUser);
 
 export default router;
