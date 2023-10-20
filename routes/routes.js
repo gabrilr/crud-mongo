@@ -6,6 +6,8 @@ import { find } from "../controllers/findUserController.js";
 import { deleteUser } from "../controllers/DeleteUserController.js";
 
 import { registerProject } from "../controllers/newProjectController.js";
+import { deleteProject } from "../controllers/DeleteProjectController.js";
+
 
 const router = Router();
 
@@ -25,6 +27,7 @@ router.post('/buscar-usuario/:id', find);
 router.delete('/borrarUsuario/:id', deleteUser);
 
 router.post('/registrar-proyecto', registerProject);
+router.delete('/borrarProyecto/:id', deleteProject);
 
 
 export default router;
